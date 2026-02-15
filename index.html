@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aura & Piel | Medicina Estética Cercana</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Manrope:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-main: #fcfcfc;
+            --bg-soft: #f4f1ee;
+            --bg-card: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #666666;
+            --gold-lux: #c5a059;
+            --accent-clinical: #2c3e50;
+            --border-subtle: 1px solid rgba(197, 160, 89, 0.2);
+            --shadow-premium: 0 20px 40px rgba(0,0,0,0.05);
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Manrope', sans-serif; 
+            background-color: var(--bg-main); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Cinzel', serif; letter-spacing: 2px; }
+
+        /* --- NAVEGACIÓN --- */
+        nav { 
+            position: fixed; top: 0; width: 100%; padding: 15px 8%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); 
+            z-index: 1000; border-bottom: var(--border-subtle);
+        }
+        
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        
+        /* LOGO GENIAL CSS */
+        .aura-logo {
+            width: 40px; height: 40px;
+            background: var(--gold-lux);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            display: inline-block;
+        }
+
+        .brand { font-size: 1.2rem; font-weight: 700; color: var(--text-main); text-transform: uppercase; letter-spacing: 4px; }
+        .brand span { color: var(--gold-lux); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative; height: 95vh; display: flex; align-items: center; padding: 0 8%;
+            background: var(--bg-soft); overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute; right: 0; top: 0; width: 60%; height: 100%;
+            background: linear-gradient(to right, var(--bg-soft) 10%, transparent 50%),
+                        url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; max-width: 650px; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); color: var(--accent-clinical); margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; font-weight: 300; max-width: 500px; }
+
+        /* --- ESTÁNDARES --- */
+        .standards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; padding: 100px 8%; background: white; }
+        .std-item { text-align: center; }
+        .std-item i { font-size: 1.8rem; color: var(--gold-lux); margin-bottom: 20px; }
+        .std-item h3 { font-size: 0.9rem; margin-bottom: 10px; color: var(--accent-clinical); }
+        .std-item p { font-size: 0.85rem; color: var(--text-muted); padding: 0 20px; }
+
+        /* --- SERVICIOS --- */
+        section { padding: 100px 8%; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { color: var(--accent-clinical); font-size: 2.2rem; }
+        .section-header .line { width: 40px; height: 2px; background: var(--gold-lux); margin: 15px auto; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .card { background: white; border-radius: 12px; overflow: hidden; transition: var(--transition); box-shadow: var(--shadow-premium); }
+        .card:hover { transform: translateY(-10px); }
+        .card-img { width: 100%; height: 280px; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
+        .card-body { padding: 35px; text-align: center; }
+        .card-body h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--accent-clinical); }
+        .card-body p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; min-height: 50px; }
+        .price { color: var(--gold-lux); font-weight: 700; font-size: 1.2rem; display: block; margin-bottom: 25px; }
+
+        .btn-add {
+            width: 100%; padding: 16px; background: transparent; border: 1px solid var(--gold-lux);
+            color: var(--gold-lux); font-weight: 700; text-transform: uppercase; cursor: pointer; transition: 0.3s;
+        }
+        .btn-add:hover { background: var(--gold-lux); color: white; }
+
+        /* --- BOTONES FLOTANTES --- */
+        .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 2000; }
+        .fab { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transition: 0.3s; }
+        .fab-whatsapp { background: #25d366; animation: pulseWp 2s infinite; }
+        .fab-cart { background: var(--gold-lux); position: relative; }
+        .badge { position: absolute; top: -5px; right: -5px; background: var(--accent-clinical); width: 22px; height: 22px; border-radius: 50%; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; border: 2px solid white; display: none; }
+        @keyframes pulseWp { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+        /* --- MODAL --- */
+        #checkout-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 3000; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: white; width: 100%; max-width: 500px; padding: 40px; border-radius: 8px; position: relative; }
+        .close-modal { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 1.5rem; }
+
+        /* --- LOADER --- */
+        #bio-loader { position: fixed; inset: 0; background: white; z-index: 5000; display: none; align-items: center; justify-content: center; flex-direction: column; }
+        .scan-line { width: 100%; height: 1px; background: var(--gold-lux); position: absolute; top: 0; animation: scan 2s infinite linear; }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+
+        footer { padding: 60px; text-align: center; border-top: var(--border-subtle); color: var(--text-muted); font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .hero-bg { width: 100%; opacity: 0.2; }
+            .hero-content { text-align: center; padding-top: 50px; }
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <div class="aura-logo"></div>
+            <div class="brand">AURA & PIEL <span>•</span> CLÍNICA</div>
+        </div>
+        <div style="color:var(--gold-lux);"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>Redescubre la mejor versión de ti.</h1>
+            <p>Combinamos ciencia de vanguardia y un ojo artístico para crear resultados que no solo se ven bien, sino que se sienten naturales.</p>
+            <button class="btn-add" style="width: auto; padding: 18px 40px; background: var(--accent-clinical); color: white; border: none;" onclick="document.getElementById('services').scrollIntoView()">Explorar Tratamientos</button>
+        </div>
+    </div>
+
+    <div class="standards">
+        <div class="std-item">
+            <i class="fa-solid fa-fingerprint"></i>
+            <h3>DISEÑO ÚNICO</h3>
+            <p>No creemos en rostros en serie. Cada plan es una respuesta a tu estructura y deseos únicos.</p>
+        </div>
+        <div class="std-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>SEGURIDAD TOTAL</h3>
+            <p>Utilizamos exclusivamente materiales certificados y tecnología de grado médico premium.</p>
+        </div>
+        <div class="std-item">
+            <i class="fa-solid fa-feather"></i>
+            <h3>RECUPERACIÓN SENCILLA</h3>
+            <p>Técnicas mínimamente invasivas diseñadas para que vuelvas a tu vida con un brillo nuevo.</p>
+        </div>
+    </div>
+
+    <section id="services">
+        <div class="section-header">
+            <h2>Nuestra Selección</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="services-grid">
+            <div class="card">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=800" alt="Facial"></div>
+                <div class="card-body">
+                    <h3>Full Face Harmony</h3>
+                    <p>Un equilibrio integral para devolver el soporte y la juventud a cada ángulo de tu rostro.</p>
+                    <span class="price">$1.200.000 COP</span>
+                    <button class="btn-add" onclick="addToCart('Full Face Harmony', 1200000)">Añadir a mi lista</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800" alt="Laser"></div>
+                <div class="card-body">
+                    <h3>Hollywood Laser Peel</h3>
+                    <p>El secreto de las alfombras rojas para una piel de porcelana y poros perfectos al instante.</p>
+                    <span class="price">$450.000 COP</span>
+                    <button class="btn-add" onclick="addToCart('Hollywood Peel', 450000)">Añadir a mi lista</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&q=80&w=800" alt="Lips"></div>
+                <div class="card-body">
+                    <h3>Russian Lips Elite</h3>
+                    <p>Labios con altura y definición, evitando el volumen artificial para un look sofisticado.</p>
+                    <span class="price">$750.000 COP</span>
+                    <button class="btn-add" onclick="addToCart('Russian Lips', 750000)">Añadir a mi lista</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=800" alt="Body"></div>
+                <div class="card-body">
+                    <h3>Lipólisis Enzimática</h3>
+                    <p>Adiós a la grasa localizada mediante enzimas inteligentes que esculpen tu figura.</p>
+                    <span class="price">$350.000 COP</span>
+                    <button class="btn-add" onclick="addToCart('Lipólisis Enzimática', 350000)">Añadir a mi lista</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="fab-container">
+        <div class="fab fab-whatsapp" onclick="window.open('https://wa.me/573207376174?text=Hola!%20Deseo%20más%20información%20sobre%20Aura%20y%20Piel')">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.8rem;"></i>
+        </div>
+        <div class="fab fab-cart" onclick="openCheckout()">
+            <i class="fa-solid fa-calendar-day" style="font-size: 1.5rem;"></i>
+            <div class="badge" id="cart-count">0</div>
+        </div>
+    </div>
+
+    <div id="checkout-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCheckout()">&times;</span>
+            <h2 style="margin-bottom: 20px; color: var(--accent-clinical);">Tu Selección VIP</h2>
+            <div id="cart-summary" style="margin-bottom: 30px; border-top: 1px solid #eee; padding-top: 20px;"></div>
+            <form onsubmit="processBooking(event)">
+                <input type="text" id="userName" placeholder="Tu nombre completo" required style="width:100%; padding:15px; margin-bottom:15px; border:1px solid #eee;">
+                <button type="submit" class="btn-add" style="background: var(--accent-clinical); color: white; border: none;">Confirmar y Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="bio-loader">
+        <div class="scan-line"></div>
+        <h3 style="margin-top: 20px; font-weight: 300; letter-spacing: 2px;">SINCRONIZANDO AGENDA...</h3>
+    </div>
+
+    <footer>
+        <p>AURA & PIEL © 2026 | EXPERIENCIA DE LUJO MÉDICO</p>
+        <p style="opacity: 0.5; margin-top: 10px;">Red Sapien</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({name, price});
+            updateBadge();
+            const btn = event.target;
+            btn.innerHTML = "<i class='fa-solid fa-check'></i> Listo";
+            btn.style.borderColor = "var(--accent-clinical)";
+            setTimeout(() => {
+                btn.innerHTML = "Añadir a mi lista";
+                btn.style.borderColor = "var(--gold-lux)";
+            }, 1500);
+        }
+
+        function updateBadge() {
+            const b = document.getElementById('cart-count');
+            b.innerText = cart.length;
+            b.style.display = cart.length > 0 ? 'flex' : 'none';
+        }
+
+        function openCheckout() {
+            if(cart.length === 0) {
+                alert("Por favor, selecciona al menos un tratamiento para agendar.");
+                return;
+            }
+            const summary = document.getElementById('cart-summary');
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            summary.innerHTML = cart.map(i => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.9rem;">
+                    <span>${i.name}</span>
+                    <span style="color:var(--gold-lux)">$${i.price.toLocaleString()}</span>
+                </div>
+            `).join('') + `<div style="margin-top:15px; text-align:right; font-weight:700;">Total: $${total.toLocaleString()}</div>`;
+            
+            document.getElementById('checkout-modal').style.display = 'flex';
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkout-modal').style.display = 'none';
+        }
+
+        function processBooking(e) {
+            e.preventDefault();
+            const name = document.getElementById('userName').value;
+            const items = cart.map(i => "• " + i.name).join("\n");
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            
+            showLoader(() => {
+                const text = `✨ *SOLICITUD DE AGENDA AURA Y PIEL*\n\n👤 *Paciente:* ${name}\n\n📋 *Tratamientos:* \n${items}\n\n💰 *Valor estimado:* $${total.toLocaleString()}\n\n_Por favor confirmar disponibilidad._`;
+                window.open(`https://wa.me/573207376174?text=${encodeURIComponent(text)}`);
+                cart = [];
+                updateBadge();
+                closeCheckout();
+            });
+        }
+
+        function showLoader(callback) {
+            document.getElementById('bio-loader').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('bio-loader').style.display = 'none';
+                callback();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
